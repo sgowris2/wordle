@@ -68,13 +68,12 @@
 }
 
 .wordle-title {
-    font-size: 4em;
     font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
-    padding-top: 1rem;
+    padding-top: 0.5rem;
     width: 100vw;
     text-align: center;
     font-weight: 700;
-    font-size: 36px;
+    font-size: 24px;
     letter-spacing: 0.2rem;
     text-transform: uppercase;
     text-align: center;
@@ -83,8 +82,8 @@
 
 .title-sep {
     width: 50vw;
-    margin: 8px auto;
-    margin-bottom: 2rem;
+    margin: 4px auto;
+    margin-bottom: 1rem;
     color: var(--lightGray);
 }
 
@@ -95,7 +94,7 @@
 
 .grid {
     display: grid;
-    max-height: 60vh;
+    max-height: 55vh;
     max-width: 90vw;
     margin: 0 auto;
     grid-gap: 1rem;
@@ -113,9 +112,51 @@
 }
 
 .letter-card {
+    background: white;
+    color: black;
     margin: auto;
     width: 3rem;
     height: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.green-card {
+    background: green;
+    color: white;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.yellow-card {
+    background: yellow;
+    color: white;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.gray-card {
+    background: gray;
+    color: white;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.letter-body {
+    margin: auto;
+    padding: 0rem;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
 }
 
 .keyboard {
@@ -140,7 +181,7 @@
     border: 0;
     padding: 0;
     margin: 0px 6px 0 0;
-    height: 58px;
+    height: 52px;
     border-radius: 4px;
     cursor: pointer;
     user-select: none;
