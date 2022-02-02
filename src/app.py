@@ -1,6 +1,6 @@
 import dash
 import dash_bootstrap_components as dbc
-from dash import html, dcc
+from dash import html, dcc, Input, Output
 
 external_stylesheets = [dbc.themes.BOOTSTRAP,
                         'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css',

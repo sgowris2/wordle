@@ -3,7 +3,7 @@ from dash import html, Output, Input, State
 from dash.exceptions import PreventUpdate
 
 from app import app
-from word import grid_layout
+from word import grid_layout, evaluate_word
 from keyboard import keyboard_layout
 
 
@@ -53,7 +53,7 @@ def evaluate(word_to_evaluate, evaluations):
     if word_to_evaluate is None:
         raise PreventUpdate()
 
-    evaluation_result = 'GGY__'
+    evaluation_result = evaluate_word(word_to_evaluate)
     evaluations.append(evaluation_result)
     output_classes = []
     if len(evaluations) > 0:

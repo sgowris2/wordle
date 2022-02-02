@@ -3,6 +3,7 @@ from dash import html
 from app import app
 from dash import Input, Output, State
 from dash.exceptions import PreventUpdate
+from datetime import datetime
 
 
 def grid_layout():
@@ -79,3 +80,37 @@ def word_layout(word_no):
         className='word-row',
         id='word-{}'.format(word_no)
     )
+
+
+def evaluate_word(word):
+    todays_word = get_todays_word()
+    result = []
+    for i in range(5):
+        if word[i] == todays_word[i]:
+            result.append('G')
+        elif word[i] in todays_word:
+            result.append('Y')
+        else:
+            result.append('_')
+    return result
+
+
+def get_todays_word():
+    date = get_todays_date()
+    assigned_words = get_assigned_words()
+    if date not in assigned_words:
+        assign_new_word(date)
+        assigned_words = get_assigned_words()
+    return assigned_words[date]
+
+
+def get_assigned_words():
+    return {'2022-02-02': 'HELLO'}
+
+
+def assign_new_word(date):
+    return {date: 'WORLD'}
+
+
+def get_todays_date():
+    return datetime.now().isoformat().split('T')[0]
