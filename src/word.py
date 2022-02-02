@@ -85,13 +85,28 @@ def word_layout(word_no):
 def evaluate_word(word):
     todays_word = get_todays_word()
     result = []
+    guessed_letters = []
+
     for i in range(5):
+        guessed_letters.append(word[i])
         if word[i] == todays_word[i]:
             result.append('G')
         elif word[i] in todays_word:
             result.append('Y')
         else:
             result.append('_')
+
+    yellow_letter_indices = [x for x in range(5) if result[x] == 'Y']
+    green_letter_indices = [x for x in range(5) if result[x] == 'G']
+    remaining_letters = [todays_word[x] for x in range(5) if x not in green_letter_indices]
+
+    for i in yellow_letter_indices:
+        letter = word[i]
+        if letter not in remaining_letters:
+            result[i] = '_'
+        else:
+            remaining_letters[remaining_letters.index(letter)] = '.'
+
     return result
 
 
