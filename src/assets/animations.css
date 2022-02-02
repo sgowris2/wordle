@@ -1,6 +1,6 @@
 @keyframes fadein {
     0% { opacity:0; }
-    50% { opacity:0; }
+    25% { opacity:0; }
     100% { opacity:1; }
 }
 
@@ -18,8 +18,8 @@
     height: 3rem;
     font-size: 2rem;
     font-weight: bold;
-    -webkit-animation: 1s ease 0s normal both 1 fadein;
-    animation: 1s ease 0s normal both 1 fadein;
+    -webkit-animation: 0.5s ease 0s normal both 1 fadein;
+    animation: 0.5s ease 0s normal both 1 fadein;
 }
 
 .green-card-animation-fade-2 {
@@ -30,8 +30,8 @@
     height: 3rem;
     font-size: 2rem;
     font-weight: bold;
-    -webkit-animation: 1s ease 1s normal both 1 fadein;
-    animation: 1s ease 1s normal both 1 fadein;
+    -webkit-animation: 0.5s ease 0.5s normal both 1 fadein;
+    animation: 0.5s ease 0.5s normal both 1 fadein;
 }
 
 .green-card-animation-fade-3 {
@@ -42,8 +42,8 @@
     height: 3rem;
     font-size: 2rem;
     font-weight: bold;
-    -webkit-animation: 1s ease 2s normal both 1 fadein;
-    animation: 1s ease 2s normal both 1 fadein;
+    -webkit-animation: 0.5s ease 1s normal both 1 fadein;
+    animation: 0.5s ease 1s normal both 1 fadein;
 }
 
 .green-card-animation-fade-4 {
@@ -54,8 +54,8 @@
     height: 3rem;
     font-size: 2rem;
     font-weight: bold;
-    -webkit-animation: 1s ease 3s normal both 1 fadein;
-    animation: 1s ease 3s normal both 1 fadein;
+    -webkit-animation: 0.5s ease 1.5s normal both 1 fadein;
+    animation: 0.5s ease 1.5s normal both 1 fadein;
 }
 
 .green-card-animation-fade-5 {
@@ -66,8 +66,8 @@
     height: 3rem;
     font-size: 2rem;
     font-weight: bold;
-    -webkit-animation: 1s ease 4s normal both 1 fadein;
-    animation: 1s ease 4s normal both 1 fadein;
+    -webkit-animation: 0.5s ease 2s normal both 1 fadein;
+    animation: 0.5s ease 2s normal both 1 fadein;
 }
 
 .yellow-card-animation-fade-1 {
@@ -78,8 +78,8 @@
     height: 3rem;
     font-size: 2rem;
     font-weight: bold;
-    -webkit-animation: 1s ease 0s normal both 1 fadein;
-    animation: 1s ease 0s normal both 1 fadein;
+    -webkit-animation: 0.5s ease 0s normal both 1 fadein;
+    animation: 0.5s ease 0s normal both 1 fadein;
 }
 
 .yellow-card-animation-fade-2 {
@@ -90,8 +90,8 @@
     height: 3rem;
     font-size: 2rem;
     font-weight: bold;
-    -webkit-animation: 1s ease 1s normal both 1 fadein;
-    animation: 1s ease 1s normal both 1 fadein;
+    -webkit-animation: 0.5s ease 0.5s normal both 1 fadein;
+    animation: 0.5s ease 0.5s normal both 1 fadein;
 }
 
 .yellow-card-animation-fade-3 {
@@ -102,8 +102,8 @@
     height: 3rem;
     font-size: 2rem;
     font-weight: bold;
-    -webkit-animation: 1s ease 2s normal both 1 fadein;
-    animation: 1s ease 2s normal both 1 fadein;
+    -webkit-animation: 0.5s ease 1s normal both 1 fadein;
+    animation: 0.5s ease 1s normal both 1 fadein;
 }
 
 .yellow-card-animation-fade-4 {
@@ -114,8 +114,8 @@
     height: 3rem;
     font-size: 2rem;
     font-weight: bold;
-    -webkit-animation: 1s ease 3s normal both 1 fadein;
-    animation: 1s ease 3s normal both 1 fadein;
+    -webkit-animation: 0.5s ease 1.5s normal both 1 fadein;
+    animation: 0.5s ease 1.5s normal both 1 fadein;
 }
 
 .yellow-card-animation-fade-5 {
@@ -126,8 +126,8 @@
     height: 3rem;
     font-size: 2rem;
     font-weight: bold;
-    -webkit-animation: 1s ease 4s normal both 1 fadein;
-    animation: 1s ease 4s normal both 1 fadein;
+    -webkit-animation: 0.5s ease 2s normal both 1 fadein;
+    animation: 0.5s ease 2s normal both 1 fadein;
 }
 
 .gray-card-animation-fade-1 {
@@ -138,8 +138,8 @@
     height: 3rem;
     font-size: 2rem;
     font-weight: bold;
-    -webkit-animation: 1s ease 0s normal both 1 fadein;
-    animation: 1s ease 0s normal both 1 fadein;
+    -webkit-animation: 0.5s ease 0s normal both 1 fadein;
+    animation: 0.5s ease 0s normal both 1 fadein;
 }
 
 .gray-card-animation-fade-2 {
@@ -150,8 +150,8 @@
     height: 3rem;
     font-size: 2rem;
     font-weight: bold;
-    -webkit-animation: 1s ease 1s normal both 1 fadein;
-    animation: 1s ease 1s normal both 1 fadein;
+    -webkit-animation: 0.5s ease 0.5s normal both 1 fadein;
+    animation: 0.5s ease 0.5s normal both 1 fadein;
 }
 
 .gray-card-animation-fade-3 {
@@ -162,8 +162,8 @@
     height: 3rem;
     font-size: 2rem;
     font-weight: bold;
-    -webkit-animation: 1s ease 2s normal both 1 fadein;
-    animation: 1s ease 2s normal both 1 fadein;
+    -webkit-animation: 0.5s ease 1s normal both 1 fadein;
+    animation: 0.5s ease 1s normal both 1 fadein;
 }
 
 .gray-card-animation-fade-4 {
@@ -174,8 +174,8 @@
     height: 3rem;
     font-size: 2rem;
     font-weight: bold;
-    -webkit-animation: 1s ease 3s normal both 1 fadein;
-    animation: 1s ease 3s normal both 1 fadein;
+    -webkit-animation: 0.5s ease 1.5s normal both 1 fadein;
+    animation: 0.5s ease 1.5s normal both 1 fadein;
 }
 
 .gray-card-animation-fade-5 {
@@ -186,6 +186,6 @@
     height: 3rem;
     font-size: 2rem;
     font-weight: bold;
-    -webkit-animation: 1s ease 4s normal both 1 fadein;
-    animation: 1s ease 4s normal both 1 fadein;
+    -webkit-animation: 0.5s ease 2s normal both 1 fadein;
+    animation: 0.5s ease 2s normal both 1 fadein;
 }
