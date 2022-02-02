@@ -69,7 +69,6 @@ Green
 Group
 Guide
 Heart
-Henry
 Horse
 Hotel
 House
@@ -77,14 +76,10 @@ Image
 Index
 Input
 Issue
-Japan
-Jones
 Judge
 Knife
-Laura
 Layer
 Level
-Lewis
 Light
 Limit
 Lunch
