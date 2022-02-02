@@ -1,9 +1,8 @@
-import json
-from datetime import datetime
-from random import randint
-
 import dash_bootstrap_components as dbc
-from dash import html
+from dash import html, Output, Input
+from dash.exceptions import PreventUpdate
+
+from app import app
 
 
 def grid_layout():
@@ -87,70 +86,21 @@ def message_box_layout():
     return layout
 
 
-def evaluate_word(word):
+@app.callback(
+    [Output('word-{}-letter-{}'.format(x, y), 'children') for x in range(6) for y in range(5)],
+    Input('state-store', 'data')
+)
+def words_letters_changed(state_data):
+    words = state_data['words']
+    outputs = []
+    if len(words) > 0:
+        count = 0
+        for word in words:
+            for letter in word:
+                count += 1
+                outputs.append(letter)
+        for i in range(count, 30):
+            outputs.append('')
+        return outputs
 
-    todays_word = get_todays_word()
-    result = []
-    guessed_letters = []
-
-    for i in range(5):
-        guessed_letters.append(word[i])
-        if word[i] == todays_word[i]:
-            result.append('G')
-        elif word[i] in todays_word:
-            result.append('Y')
-        else:
-            result.append('_')
-
-    yellow_letter_indices = [x for x in range(5) if result[x] == 'Y']
-    green_letter_indices = [x for x in range(5) if result[x] == 'G']
-    remaining_letters = [todays_word[x] for x in range(5) if x not in green_letter_indices]
-
-    for i in yellow_letter_indices:
-        letter = word[i]
-        if letter not in remaining_letters:
-            result[i] = '_'
-        else:
-            remaining_letters[remaining_letters.index(letter)] = '.'
-
-    return result
-
-
-def get_todays_word():
-    date: str = get_todays_date()
-    assigned_words = get_assigned_words_dict()
-    if date not in assigned_words:
-        assign_new_word(date)
-        assigned_words = get_assigned_words_dict()
-    return assigned_words[date]
-
-
-def get_assigned_words_dict() -> dict:
-    with open('assigned_words.json', 'r') as f:
-        words_dict = json.load(f)
-    return words_dict
-
-
-def assign_new_word(date: str):
-    words_list = get_words_list()
-    assigned_words_dict = get_assigned_words_dict()
-    assigned_words_list = list(assigned_words_dict.values())
-    while True:
-        index = randint(0, len(words_list))
-        new_word = str.upper(words_list[index]).strip()
-        if new_word not in assigned_words_list:
-            break
-    assigned_words_dict[date] = new_word
-
-    with open('assigned_words.json', 'w') as f:
-        json.dump(assigned_words_dict, f)
-
-
-def get_words_list():
-    with open('words.txt', 'r') as f:
-        words = f.readlines()
-    return words
-
-
-def get_todays_date() -> str:
-    return datetime.now().isoformat().split('T')[0]
+    raise PreventUpdate()

@@ -26,7 +26,8 @@ app.layout = html.Div(children=[
     dcc.Store(id='state-store', data={'current_word': 0, 'current_letter': 0, 'words': []}),
     dcc.Store(id='evaluation-trigger'),
     dcc.Store(id='evaluation-store', data=[]),
-    dcc.Store(id='previous-guesses', data=[])
+    dcc.Store(id='previous-guesses', data=[]),
+    dcc.Store(id='completed-store', data=False)
 ])
 
 server = app.server
