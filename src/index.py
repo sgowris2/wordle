@@ -2,9 +2,10 @@ import dash
 from dash import html, Output, Input, State
 from dash.exceptions import PreventUpdate
 
+from app import WORDS_SET
 from app import app
-from word import grid_layout, evaluate_word
 from keyboard import keyboard_layout
+from word import grid_layout, evaluate_word
 
 
 @app.callback(dash.dependencies.Output('page-content', 'children'),
@@ -45,16 +46,17 @@ def state_changed(state_data):
 
 
 @app.callback(
-    [Output('evaluation-store', 'data'), [Output('word-{}-letter-{}-card'.format(x, y), 'className') for x in range(6) for y in range(5)]],
+    [Output('evaluation-store', 'data'),
+     [Output('word-{}-letter-{}-card'.format(x, y), 'className') for x in range(6) for y in range(5)]],
     Input('evaluation-trigger', 'data'),
     [State('evaluation-store', 'data')]
 )
 def evaluate(word_to_evaluate, evaluations):
-
     if word_to_evaluate is None:
         raise PreventUpdate()
 
     evaluation_result = evaluate_word(word_to_evaluate)
+
     evaluations.append(evaluation_result)
     output_classes = []
     if len(evaluations) > 0:
@@ -81,7 +83,6 @@ def evaluate(word_to_evaluate, evaluations):
     State('state-store', 'data')
 )
 def action_callback(input, state_data):
-
     if input is not None:
         word_to_evaluate = None
         current_word = state_data['current_word']
@@ -111,6 +112,8 @@ def action_callback(input, state_data):
             if current_letter != 5:
                 raise PreventUpdate()
             word_to_evaluate = words[current_word]
+            if word_to_evaluate not in WORDS_SET:
+                raise PreventUpdate()  # TODO Add animation and message.
             current_word += 1
             current_letter = 0
             words.append('')

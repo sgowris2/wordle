@@ -29,3 +29,15 @@ app.layout = html.Div(children=[
 ])
 
 server = app.server
+
+
+def load_all_words_into_set(filename):
+    with open(filename, 'r') as f:
+        lines = f.readlines()
+    d = {str.upper(x.strip()) for x in lines}
+    return d
+
+
+WORDS_SET = load_all_words_into_set('all_words.txt')
+
+

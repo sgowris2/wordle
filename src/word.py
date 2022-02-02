@@ -1,11 +1,9 @@
+import json
+from datetime import datetime
+from random import randint
+
 import dash_bootstrap_components as dbc
 from dash import html
-from app import app
-from dash import Input, Output, State
-from dash.exceptions import PreventUpdate
-from datetime import datetime
-import json
-from random import randint
 
 
 def grid_layout():
@@ -128,7 +126,6 @@ def get_assigned_words_dict() -> dict:
 
 
 def assign_new_word(date: str):
-
     words_list = get_words_list()
     assigned_words_dict = get_assigned_words_dict()
     assigned_words_list = list(assigned_words_dict.values())
