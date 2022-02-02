@@ -15,7 +15,7 @@ def grid_layout():
         word_layout(4),
         word_layout(5)
     ],
-        className='grid'
+        className='word-grid'
     )
 
 
@@ -82,7 +82,13 @@ def word_layout(word_no):
     )
 
 
+def message_box_layout():
+    layout = dbc.Toast(id='message-box', is_open=False, className='message-box')
+    return layout
+
+
 def evaluate_word(word):
+
     todays_word = get_todays_word()
     result = []
     guessed_letters = []

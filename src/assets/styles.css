@@ -67,6 +67,10 @@
     --modal-content-bg: var(--color-tone-7);
 }
 
+.hidden {
+    display: none;
+}
+
 .wordle-title {
     font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
     padding-top: 0.5rem;
@@ -92,7 +96,43 @@
     margin: auto;
 }
 
-.grid {
+.message-box {
+    display: block;
+    z-index: 1;
+    margin: auto;
+    height: 0;
+    width: fit-content;
+    text-align: center;
+    font-family: inherit;
+    font-size: 1rem;
+    -webkit-animation: 0.5s ease 2s normal both 1 fadeout;
+    animation: 0.5s ease 2s normal both 1 fadeout;
+}
+
+.toast {
+    height: 0;
+    border: none;
+}
+
+.toast:not(:last-child) {
+    margin-bottom: 0;
+}
+
+.toast-header {
+    background: black;
+    padding: 0.75rem 0.75rem;
+    font-family: inherit;
+    color: white;
+    border: 1px solid white;
+    border-radius: 0.5px;
+}
+
+.toast-body {
+    height: 0;
+    padding: 0;
+}
+
+.word-grid {
     display: grid;
     max-height: 55vh;
     max-width: 90vw;
@@ -160,7 +200,7 @@
 }
 
 .keyboard {
-    padding-top: 3rem;
+    padding-top: 2rem;
     max-width: 600px;
     padding-left: 8px;
     padding-right: 8px;

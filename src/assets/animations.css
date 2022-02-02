@@ -4,6 +4,12 @@
     100% { opacity:1; }
 }
 
+@keyframes fadeout {
+    0% { opacity:100; }
+    50% { opacity:100; }
+    100% { opacity:0; }
+}
+
 .green-card-animation-fade-1 {
     background: var(--color-correct);
     color: white;
