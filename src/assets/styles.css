@@ -122,7 +122,7 @@
 }
 
 .green-card {
-    background: green;
+    background: var(--color-correct);
     color: white;
     margin: auto;
     width: 3rem;
@@ -132,7 +132,7 @@
 }
 
 .yellow-card {
-    background: yellow;
+    background: var(--color-present);
     color: white;
     margin: auto;
     width: 3rem;
@@ -142,7 +142,7 @@
 }
 
 .gray-card {
-    background: gray;
+    background: var(--color-absent);
     color: white;
     margin: auto;
     width: 3rem;

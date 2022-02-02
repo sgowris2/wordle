@@ -61,13 +61,17 @@ def evaluate(word_to_evaluate, evaluations):
     output_classes = []
     if len(evaluations) > 0:
         for w in evaluations:
+            letter_no = 0
             for l in w:
+                letter_no += 1
                 if l == 'G':
                     class_name = 'green-card'
                 elif l == 'Y':
                     class_name = 'yellow-card'
                 else:
                     class_name = 'gray-card'
+                if w == evaluations[-1]:
+                    class_name = '{}-{}-{}'.format(class_name, 'animation-fade', letter_no)
                 output_classes.append(class_name)
 
     for i in range(len(evaluations), 6):

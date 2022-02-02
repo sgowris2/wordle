@@ -1,0 +1,185 @@
+@keyframes fadein {
+    0% { opacity:0; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+
+.green-card-animation-fade-1 {
+    background: var(--color-correct);
+    color: white;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+    -webkit-animation: 1s ease 0s normal both 1 fadein;
+    animation: 1s ease 0s normal both 1 fadein;
+}
+
+.green-card-animation-fade-2 {
+    background: var(--color-correct);
+    color: white;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+    -webkit-animation: 1s ease 1s normal both 1 fadein;
+    animation: 1s ease 1s normal both 1 fadein;
+}
+
+.green-card-animation-fade-3 {
+    background: var(--color-correct);
+    color: white;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+    -webkit-animation: 1s ease 2s normal both 1 fadein;
+    animation: 1s ease 2s normal both 1 fadein;
+}
+
+.green-card-animation-fade-4 {
+    background: var(--color-correct);
+    color: white;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+    -webkit-animation: 1s ease 3s normal both 1 fadein;
+    animation: 1s ease 3s normal both 1 fadein;
+}
+
+.green-card-animation-fade-5 {
+    background: var(--color-correct);
+    color: white;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+    -webkit-animation: 1s ease 4s normal both 1 fadein;
+    animation: 1s ease 4s normal both 1 fadein;
+}
+
+.yellow-card-animation-fade-1 {
+    background: var(--color-present);
+    color: white;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+    -webkit-animation: 1s ease 0s normal both 1 fadein;
+    animation: 1s ease 0s normal both 1 fadein;
+}
+
+.yellow-card-animation-fade-2 {
+    background: var(--color-present);
+    color: white;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+    -webkit-animation: 1s ease 1s normal both 1 fadein;
+    animation: 1s ease 1s normal both 1 fadein;
+}
+
+.yellow-card-animation-fade-3 {
+    background: var(--color-present);
+    color: white;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+    -webkit-animation: 1s ease 2s normal both 1 fadein;
+    animation: 1s ease 2s normal both 1 fadein;
+}
+
+.yellow-card-animation-fade-4 {
+    background: var(--color-present);
+    color: white;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+    -webkit-animation: 1s ease 3s normal both 1 fadein;
+    animation: 1s ease 3s normal both 1 fadein;
+}
+
+.yellow-card-animation-fade-5 {
+    background: var(--color-present);
+    color: white;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+    -webkit-animation: 1s ease 4s normal both 1 fadein;
+    animation: 1s ease 4s normal both 1 fadein;
+}
+
+.gray-card-animation-fade-1 {
+    background: var(--color-absent);
+    color: white;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+    -webkit-animation: 1s ease 0s normal both 1 fadein;
+    animation: 1s ease 0s normal both 1 fadein;
+}
+
+.gray-card-animation-fade-2 {
+    background: var(--color-absent);
+    color: white;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+    -webkit-animation: 1s ease 1s normal both 1 fadein;
+    animation: 1s ease 1s normal both 1 fadein;
+}
+
+.gray-card-animation-fade-3 {
+    background: var(--color-absent);
+    color: white;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+    -webkit-animation: 1s ease 2s normal both 1 fadein;
+    animation: 1s ease 2s normal both 1 fadein;
+}
+
+.gray-card-animation-fade-4 {
+    background: var(--color-absent);
+    color: white;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+    -webkit-animation: 1s ease 3s normal both 1 fadein;
+    animation: 1s ease 3s normal both 1 fadein;
+}
+
+.gray-card-animation-fade-5 {
+    background: var(--color-absent);
+    color: white;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
+    -webkit-animation: 1s ease 4s normal both 1 fadein;
+    animation: 1s ease 4s normal both 1 fadein;
+}
