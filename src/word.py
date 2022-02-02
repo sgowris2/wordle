@@ -4,6 +4,8 @@ from app import app
 from dash import Input, Output, State
 from dash.exceptions import PreventUpdate
 from datetime import datetime
+import json
+from random import randint
 
 
 def grid_layout():
@@ -111,21 +113,41 @@ def evaluate_word(word):
 
 
 def get_todays_word():
-    date = get_todays_date()
-    assigned_words = get_assigned_words()
+    date: str = get_todays_date()
+    assigned_words = get_assigned_words_dict()
     if date not in assigned_words:
         assign_new_word(date)
-        assigned_words = get_assigned_words()
+        assigned_words = get_assigned_words_dict()
     return assigned_words[date]
 
 
-def get_assigned_words():
-    return {'2022-02-02': 'HELLO'}
+def get_assigned_words_dict() -> dict:
+    with open('assigned_words.json', 'r') as f:
+        words_dict = json.load(f)
+    return words_dict
 
 
-def assign_new_word(date):
-    return {date: 'WORLD'}
+def assign_new_word(date: str):
+
+    words_list = get_words_list()
+    assigned_words_dict = get_assigned_words_dict()
+    assigned_words_list = list(assigned_words_dict.values())
+    while True:
+        index = randint(0, len(words_list))
+        new_word = str.upper(words_list[index]).strip()
+        if new_word not in assigned_words_list:
+            break
+    assigned_words_dict[date] = new_word
+
+    with open('assigned_words.json', 'w') as f:
+        json.dump(assigned_words_dict, f)
 
 
-def get_todays_date():
+def get_words_list():
+    with open('words.txt', 'r') as f:
+        words = f.readlines()
+    return words
+
+
+def get_todays_date() -> str:
     return datetime.now().isoformat().split('T')[0]

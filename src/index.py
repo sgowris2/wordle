@@ -50,6 +50,7 @@ def state_changed(state_data):
     [State('evaluation-store', 'data')]
 )
 def evaluate(word_to_evaluate, evaluations):
+
     if word_to_evaluate is None:
         raise PreventUpdate()
 
