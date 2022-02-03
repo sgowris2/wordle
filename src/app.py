@@ -99,38 +99,48 @@ def key_pressed(n_clicks_list, current_word, completed_status):
     raise PreventUpdate()
 
 
-@app.callback(
+app.clientside_callback(
+    """
+    function(action, current_word, word) {
+        
+        if(action){
+            var current_letter = 0;
+            var new_word = '';
+            if (word == null) {
+                word = '';
+            }
+            
+            if(word.length > 0) {
+                current_letter = word.length;
+            }
+            if(current_word > 5) {
+                throw window.dash_clientside.PreventUpdate;
+            }
+            if(action.length == 1){
+                if(current_letter >= 5) {
+                    throw window.dash_clientside.PreventUpdate;
+                }
+                new_word = word + action;
+            } else if(action == 'backspace') {
+                if(word.length == 0 || current_letter == 0){
+                    throw window.dash_clientside.PreventUpdate;
+                }
+                new_word = word.slice(0, -1);
+                current_letter -= 1;
+            } else {
+                throw window.dash_clientside.PreventUpdate;
+            }
+            return [true, new_word];
+        }
+        throw window.dash_clientside.PreventUpdate;
+    }
+    """,
     Output({'type': 'word-update', 'key': MATCH}, 'data'),
     Output({'type': 'words-store', 'key': MATCH}, 'data'),
     Input({'type': 'action-store', 'key': MATCH}, 'data'),
     State('current-word-store', 'data'),
     State({'type': 'words-store', 'key': MATCH}, 'data')
 )
-def action_triggered(action, current_word, word):
-
-    if action is not None:
-        current_letter = len(word) if word is not None else 0
-
-        if current_word > 5:
-            raise PreventUpdate()
-
-        if len(action) == 1:
-            if current_letter >= 5:
-                raise PreventUpdate()
-            new_word = word + action
-
-        elif action == 'backspace':
-            if len(word) == 0 or current_letter == 0:
-                raise PreventUpdate()
-            new_word = word[:-1]
-            current_letter -= 1
-
-        else:
-            raise PreventUpdate()
-
-        return [True, new_word]
-
-    raise PreventUpdate()
 
 
 @app.callback(
@@ -176,7 +186,23 @@ def enter_pressed(n_clicks, current_word, words, evaluations, previous_guesses):
     raise PreventUpdate()
 
 
-@app.callback(
+app.clientside_callback(
+    """
+    function(data, word) {
+        if(data) {
+            var outputs = [];
+            var count = 0;
+            for(var i=0; i<word.length; i++) {
+                count += 1;
+                outputs.push(word[i]);      
+            }
+            for(var i=count; i<5; i++) {
+                outputs.push('');
+            }
+            return outputs;
+        }
+    }
+    """,
     [Output('word-0-letter-0', 'children'),
      Output('word-0-letter-1', 'children'),
      Output('word-0-letter-2', 'children'),
@@ -185,20 +211,25 @@ def enter_pressed(n_clicks, current_word, words, evaluations, previous_guesses):
     Input({'type': 'word-update', 'key': 0}, 'data'),
     State({'type': 'words-store', 'key': 0}, 'data')
 )
-def word_0_letters_changed(data, word):
-    if data is not None:
-        outputs = []
-        count = 0
-        for letter in word:
-            count += 1
-            outputs.append(letter)
-        for i in range(count, 5):
-            outputs.append('')
-        return outputs
-    raise PreventUpdate()
 
 
-@app.callback(
+app.clientside_callback(
+    """
+    function(data, word) {
+        if(data) {
+            var outputs = [];
+            var count = 0;
+            for(var i=0; i<word.length; i++) {
+                count += 1;
+                outputs.push(word[i]);      
+            }
+            for(var i=count; i<5; i++) {
+                outputs.push('');
+            }
+            return outputs;
+        }
+    }
+    """,
     [Output('word-1-letter-0', 'children'),
      Output('word-1-letter-1', 'children'),
      Output('word-1-letter-2', 'children'),
@@ -207,20 +238,25 @@ def word_0_letters_changed(data, word):
     Input({'type': 'word-update', 'key': 1}, 'data'),
     State({'type': 'words-store', 'key': 1}, 'data')
 )
-def word_1_letters_changed(data, word):
-    if data is not None:
-        outputs = []
-        count = 0
-        for letter in word:
-            count += 1
-            outputs.append(letter)
-        for i in range(count, 5):
-            outputs.append('')
-        return outputs
-    raise PreventUpdate()
 
 
-@app.callback(
+app.clientside_callback(
+    """
+    function(data, word) {
+        if(data) {
+            var outputs = [];
+            var count = 0;
+            for(var i=0; i<word.length; i++) {
+                count += 1;
+                outputs.push(word[i]);      
+            }
+            for(var i=count; i<5; i++) {
+                outputs.push('');
+            }
+            return outputs;
+        }
+    }
+    """,
     [Output('word-2-letter-0', 'children'),
      Output('word-2-letter-1', 'children'),
      Output('word-2-letter-2', 'children'),
@@ -229,20 +265,25 @@ def word_1_letters_changed(data, word):
     Input({'type': 'word-update', 'key': 2}, 'data'),
     State({'type': 'words-store', 'key': 2}, 'data')
 )
-def word_2_letters_changed(data, word):
-    if data is not None:
-        outputs = []
-        count = 0
-        for letter in word:
-            count += 1
-            outputs.append(letter)
-        for i in range(count, 5):
-            outputs.append('')
-        return outputs
-    raise PreventUpdate()
 
 
-@app.callback(
+app.clientside_callback(
+    """
+    function(data, word) {
+        if(data) {
+            var outputs = [];
+            var count = 0;
+            for(var i=0; i<word.length; i++) {
+                count += 1;
+                outputs.push(word[i]);      
+            }
+            for(var i=count; i<5; i++) {
+                outputs.push('');
+            }
+            return outputs;
+        }
+    }
+    """,
     [Output('word-3-letter-0', 'children'),
      Output('word-3-letter-1', 'children'),
      Output('word-3-letter-2', 'children'),
@@ -251,20 +292,25 @@ def word_2_letters_changed(data, word):
     Input({'type': 'word-update', 'key': 3}, 'data'),
     State({'type': 'words-store', 'key': 3}, 'data')
 )
-def word_3_letters_changed(data, word):
-    if data is not None:
-        outputs = []
-        count = 0
-        for letter in word:
-            count += 1
-            outputs.append(letter)
-        for i in range(count, 5):
-            outputs.append('')
-        return outputs
-    raise PreventUpdate()
 
 
-@app.callback(
+app.clientside_callback(
+    """
+    function(data, word) {
+        if(data) {
+            var outputs = [];
+            var count = 0;
+            for(var i=0; i<word.length; i++) {
+                count += 1;
+                outputs.push(word[i]);      
+            }
+            for(var i=count; i<5; i++) {
+                outputs.push('');
+            }
+            return outputs;
+        }
+    }
+    """,
     [Output('word-4-letter-0', 'children'),
      Output('word-4-letter-1', 'children'),
      Output('word-4-letter-2', 'children'),
@@ -273,20 +319,25 @@ def word_3_letters_changed(data, word):
     Input({'type': 'word-update', 'key': 4}, 'data'),
     State({'type': 'words-store', 'key': 4}, 'data')
 )
-def word_4_letters_changed(data, word):
-    if data is not None:
-        outputs = []
-        count = 0
-        for letter in word:
-            count += 1
-            outputs.append(letter)
-        for i in range(count, 5):
-            outputs.append('')
-        return outputs
-    raise PreventUpdate()
 
 
-@app.callback(
+app.clientside_callback(
+    """
+    function(data, word) {
+        if(data) {
+            var outputs = [];
+            var count = 0;
+            for(var i=0; i<word.length; i++) {
+                count += 1;
+                outputs.push(word[i]);      
+            }
+            for(var i=count; i<5; i++) {
+                outputs.push('');
+            }
+            return outputs;
+        }
+    }
+    """,
     [Output('word-5-letter-0', 'children'),
      Output('word-5-letter-1', 'children'),
      Output('word-5-letter-2', 'children'),
@@ -295,17 +346,6 @@ def word_4_letters_changed(data, word):
     Input({'type': 'word-update', 'key': 5}, 'data'),
     State({'type': 'words-store', 'key': 5}, 'data')
 )
-def word_5_letters_changed(data, word):
-    if data is not None:
-        outputs = []
-        count = 0
-        for letter in word:
-            count += 1
-            outputs.append(letter)
-        for i in range(count, 5):
-            outputs.append('')
-        return outputs
-    raise PreventUpdate()
 
 
 @app.callback(
