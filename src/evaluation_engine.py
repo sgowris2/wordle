@@ -16,25 +16,22 @@ def evaluate(word_to_evaluate, evaluations, previous_guesses):
     return evaluations, previous_guesses, completed_status
 
 
-def render_words(evaluations):
+def get_output_classes(evaluation):
+
     output_classes = []
-    if len(evaluations) > 0:
-        for w in evaluations:
-            letter_no = 0
-            for l in w:
-                letter_no += 1
-                if l == 'G':
-                    class_name = 'green-card'
-                elif l == 'Y':
-                    class_name = 'yellow-card'
-                else:
-                    class_name = 'gray-card'
-                if w == evaluations[-1]:
-                    class_name = '{}-{}-{}'.format(class_name, 'animation-fade', letter_no)
-                output_classes.append(class_name)
-    for i in range(len(evaluations), 6):
-        for j in range(5):
-            output_classes.append('letter-card')
+
+    if len(evaluation) > 0:
+        letter_no = 0
+        for l in evaluation:
+            letter_no += 1
+            if l == 'G':
+                class_name = '{}-{}-{}'.format('green-card', 'animation-fade', letter_no)
+            elif l == 'Y':
+                class_name = '{}-{}-{}'.format('yellow-card', 'animation-fade', letter_no)
+            else:
+                class_name = '{}-{}-{}'.format('gray-card', 'animation-fade', letter_no)
+            output_classes.append(class_name)
+
     return output_classes
 
 
@@ -77,7 +74,7 @@ def _get_todays_word():
 
 
 def _get_assigned_words_dict() -> dict:
-    with open('assigned_words.json', 'r') as f:
+    with open('./assigned_words.json', 'r') as f:
         words_dict = json.load(f)
     return words_dict
 
@@ -93,12 +90,12 @@ def _assign_new_word(date: str):
             break
     assigned_words_dict[date] = new_word
 
-    with open('assigned_words.json', 'w') as f:
+    with open('./assigned_words.json', 'w') as f:
         json.dump(assigned_words_dict, f)
 
 
 def _get_words_list():
-    with open('words.txt', 'r') as f:
+    with open('./words.txt', 'r') as f:
         words = f.readlines()
     return words
 

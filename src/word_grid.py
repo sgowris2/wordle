@@ -1,8 +1,5 @@
 import dash_bootstrap_components as dbc
-from dash import html, Output, Input
-from dash.exceptions import PreventUpdate
-
-from app import app
+from dash import html
 
 
 def grid_layout():
@@ -82,25 +79,7 @@ def word_layout(word_no):
 
 
 def message_box_layout():
-    layout = dbc.Toast(id='message-box', is_open=False, className='message-box')
+    layout = dbc.Toast(id='message-box', duration=2500, is_open=False, className='message-box')
     return layout
 
 
-@app.callback(
-    [Output('word-{}-letter-{}'.format(x, y), 'children') for x in range(6) for y in range(5)],
-    Input('state-store', 'data')
-)
-def words_letters_changed(state_data):
-    words = state_data['words']
-    outputs = []
-    if len(words) > 0:
-        count = 0
-        for word in words:
-            for letter in word:
-                count += 1
-                outputs.append(letter)
-        for i in range(count, 30):
-            outputs.append('')
-        return outputs
-
-    raise PreventUpdate()
