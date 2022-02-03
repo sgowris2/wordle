@@ -5,6 +5,10 @@ from random import randint
 from dash.exceptions import PreventUpdate
 
 
+KEYS = "QWERTYUIOPASDFGHJKLZXCVBNM"
+KEYS_DICT = {KEYS[i]: i for i in range(len(KEYS))}
+
+
 def evaluate(word_to_evaluate, evaluations, previous_guesses):
 
     if word_to_evaluate is None:
@@ -33,6 +37,32 @@ def get_output_classes(evaluation):
             output_classes.append(class_name)
 
     return output_classes
+
+
+def get_keyboard_classes(previous_guesses):
+
+    classes = ['keyboard-button' for x in range(27)]
+    word = _get_todays_word()
+    greens = set()
+    yellows = set()
+    grays = set()
+    for g in previous_guesses:
+        for i in range(5):
+            if g[i] == word[i]:
+                greens.add(g[i])
+            elif g[i] in word:
+                yellows.add(g[i])
+            else:
+                grays.add(g[i])
+    yellows = {x for x in yellows if x not in greens}
+    for i in greens:
+        classes[KEYS_DICT[i]] = 'keyboard-button green-key'
+    for i in yellows:
+        classes[KEYS_DICT[i]] = 'keyboard-button yellow-key'
+    for i in grays:
+        classes[KEYS_DICT[i]] = 'keyboard-button gray-key'
+
+    return classes
 
 
 def _evaluate_word(word):

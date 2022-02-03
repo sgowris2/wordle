@@ -1,11 +1,11 @@
 import json
-
+import time
 import dash
 import dash_bootstrap_components as dbc
 from dash import html, dcc, Input, Output, ALL, MATCH, callback_context, State
 from dash.exceptions import PreventUpdate
 
-from evaluation_engine import get_output_classes, evaluate
+from evaluation_engine import get_output_classes, get_keyboard_classes, evaluate
 from keyboard import keyboard_layout
 from word_grid import grid_layout, message_box_layout
 
@@ -439,3 +439,19 @@ def update_word_5(update_data, evaluations):
         raise PreventUpdate()
     output_classes = get_output_classes(evaluations[5])
     return output_classes
+
+
+@app.callback(
+    Output({'type': 'keybutton', 'index': ALL}, 'className'),
+    Input('word-0-letter-4-card', 'className'),
+    Input('word-1-letter-4-card', 'className'),
+    Input('word-2-letter-4-card', 'className'),
+    Input('word-3-letter-4-card', 'className'),
+    Input('word-4-letter-4-card', 'className'),
+    Input('word-5-letter-4-card', 'className'),
+    State('previous-guesses', 'data')
+)
+def update_keyboard_states(a, b, c, d, e, f, previous_guesses):
+    time.sleep(2.5)
+    keyboard_classes = get_keyboard_classes(previous_guesses)
+    return keyboard_classes
