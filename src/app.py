@@ -73,7 +73,29 @@ def load_all_words_into_set(filename):
 WORDS_SET = load_all_words_into_set('./all_words.txt')
 
 
-@app.callback(
+app.clientside_callback(
+    """
+    function(n_clicks, current_word, completed_status) {
+        if(current_word > 5 || completed_status) {
+            throw window.dash_clientside.PreventUpdate;
+        }
+        var triggered = dash_clientside.callback_context.triggered;
+        if(triggered) {
+            console.log(triggered[0]);
+            var value = triggered[0]['value'];
+            if(value) {
+                prop_json_str = triggered[0]["prop_id"].split(".")[0];
+                if (prop_json_str){
+                    triggered_key = JSON.parse(prop_json_str)["index"];
+                    actions = [null, null, null, null, null, null]
+                    actions[current_word] = triggered_key
+                    return actions
+                }
+            }
+        }
+        throw window.dash_clientside.PreventUpdate;
+    }
+    """,
     [Output({'type': 'action-store', 'key': 0}, 'data'),
      Output({'type': 'action-store', 'key': 1}, 'data'),
      Output({'type': 'action-store', 'key': 2}, 'data'),
@@ -84,19 +106,6 @@ WORDS_SET = load_all_words_into_set('./all_words.txt')
     State('current-word-store', 'data'),
     State('completed-store', 'data')
 )
-def key_pressed(n_clicks_list, current_word, completed_status):
-    if current_word > 5 or completed_status:
-        raise PreventUpdate()
-    if callback_context.triggered is not None:
-        value = callback_context.triggered[0]['value']
-        if value is not None:
-            property_json_str = callback_context.triggered[0]['prop_id'].split('.')[0]
-            if len(property_json_str) > 0:
-                triggered_key = json.loads(property_json_str)['index']
-                actions = [None for x in range(6)]
-                actions[current_word] = triggered_key
-                return actions
-    raise PreventUpdate()
 
 
 app.clientside_callback(
