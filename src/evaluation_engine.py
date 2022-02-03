@@ -42,6 +42,7 @@ def get_output_classes(evaluation):
 def get_keyboard_classes(previous_guesses):
 
     classes = ['keyboard-button' for x in range(27)]
+    classes[-1] = 'bi bi-backspace keyboard-button one-and-half'
     word = _get_todays_word()
     greens = set()
     yellows = set()

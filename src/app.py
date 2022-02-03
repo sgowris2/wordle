@@ -452,6 +452,6 @@ def update_word_5(update_data, evaluations):
     State('previous-guesses', 'data')
 )
 def update_keyboard_states(a, b, c, d, e, f, previous_guesses):
-    time.sleep(2.5)
+    time.sleep(2.25)
     keyboard_classes = get_keyboard_classes(previous_guesses)
     return keyboard_classes

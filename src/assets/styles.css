@@ -238,22 +238,22 @@
 .green-key {
     background-color: var(--color-correct);
     color: var(--key-evaluated-text-color);
-    -webkit-animation: 0.1s ease 0s normal forwards 1 fadein;
-    animation: 0.1s ease 0s normal both 1 fadein;
+    -webkit-animation: 0.5s ease 0s normal forwards 1 fadein;
+    animation: 0.5s ease 0s normal both 1 fadein;
 }
 
 .yellow-key {
     background-color: var(--color-present);
     color: var(--key-evaluated-text-color);
-    -webkit-animation: 0.1s ease 0s normal forwards 1 fadein;
-    animation: 0.1s ease 0s normal both 1 fadein;
+    -webkit-animation: 0.5s ease 0s normal forwards 1 fadein;
+    animation: 0.5s ease 0s normal both 1 fadein;
 }
 
 .gray-key {
     background-color: var(--color-absent);
     color: var(--key-evaluated-text-color);
-    -webkit-animation: 0.1s ease 0s normal forwards 1 fadein;
-    animation: 0.1s ease 0s normal both 1 fadein;
+    -webkit-animation: 0.5s ease 0s normal forwards 1 fadein;
+    animation: 0.5s ease 0s normal both 1 fadein;
 }
 
 .spacer-half {
