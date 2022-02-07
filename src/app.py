@@ -81,7 +81,6 @@ app.clientside_callback(
         }
         var triggered = dash_clientside.callback_context.triggered;
         if(triggered) {
-            console.log(triggered[0]);
             var value = triggered[0]['value'];
             if(value) {
                 prop_json_str = triggered[0]["prop_id"].split(".")[0];
@@ -116,7 +115,7 @@ app.clientside_callback(
             var current_letter = 0;
             var new_word = '';
             if (word == null) {
-                word = '';
+                throw window.dash_clientside.PreventUpdate;
             }
             
             if(word.length > 0) {
@@ -198,7 +197,7 @@ def enter_pressed(n_clicks, current_word, words, evaluations, previous_guesses):
 app.clientside_callback(
     """
     function(data, word) {
-        if(data) {
+        if(data && word) {
             var outputs = [];
             var count = 0;
             for(var i=0; i<word.length; i++) {
@@ -210,6 +209,7 @@ app.clientside_callback(
             }
             return outputs;
         }
+        throw window.dash_clientside.PreventUpdate;
     }
     """,
     [Output('word-0-letter-0', 'children'),
@@ -225,7 +225,7 @@ app.clientside_callback(
 app.clientside_callback(
     """
     function(data, word) {
-        if(data) {
+        if(data && word) {
             var outputs = [];
             var count = 0;
             for(var i=0; i<word.length; i++) {
@@ -237,6 +237,7 @@ app.clientside_callback(
             }
             return outputs;
         }
+        throw window.dash_clientside.PreventUpdate;
     }
     """,
     [Output('word-1-letter-0', 'children'),
@@ -252,7 +253,7 @@ app.clientside_callback(
 app.clientside_callback(
     """
     function(data, word) {
-        if(data) {
+        if(data && word) {
             var outputs = [];
             var count = 0;
             for(var i=0; i<word.length; i++) {
@@ -264,6 +265,7 @@ app.clientside_callback(
             }
             return outputs;
         }
+        throw window.dash_clientside.PreventUpdate;
     }
     """,
     [Output('word-2-letter-0', 'children'),
@@ -279,7 +281,7 @@ app.clientside_callback(
 app.clientside_callback(
     """
     function(data, word) {
-        if(data) {
+        if(data && word) {
             var outputs = [];
             var count = 0;
             for(var i=0; i<word.length; i++) {
@@ -291,6 +293,7 @@ app.clientside_callback(
             }
             return outputs;
         }
+        throw window.dash_clientside.PreventUpdate;
     }
     """,
     [Output('word-3-letter-0', 'children'),
@@ -306,7 +309,7 @@ app.clientside_callback(
 app.clientside_callback(
     """
     function(data, word) {
-        if(data) {
+        if(data && word) {
             var outputs = [];
             var count = 0;
             for(var i=0; i<word.length; i++) {
@@ -318,6 +321,7 @@ app.clientside_callback(
             }
             return outputs;
         }
+        throw window.dash_clientside.PreventUpdate;
     }
     """,
     [Output('word-4-letter-0', 'children'),
@@ -333,7 +337,7 @@ app.clientside_callback(
 app.clientside_callback(
     """
     function(data, word) {
-        if(data) {
+        if(data && word) {
             var outputs = [];
             var count = 0;
             for(var i=0; i<word.length; i++) {
@@ -345,6 +349,7 @@ app.clientside_callback(
             }
             return outputs;
         }
+        throw window.dash_clientside.PreventUpdate;
     }
     """,
     [Output('word-5-letter-0', 'children'),
