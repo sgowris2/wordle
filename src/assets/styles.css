@@ -71,6 +71,11 @@
     display: none;
 }
 
+.loading-spinner {
+    z-index: 100;
+    color: var(--color-correct);
+}
+
 .wordle-title {
     font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
     padding-top: 0.5rem;

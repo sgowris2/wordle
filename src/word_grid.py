@@ -1,5 +1,6 @@
 import dash_bootstrap_components as dbc
 from dash import html
+from dash import dcc
 
 
 def grid_layout():
@@ -79,7 +80,7 @@ def word_layout(word_no):
 
 
 def message_box_layout():
-    layout = dbc.Toast(id='message-box', duration=2500, is_open=False, className='message-box')
+    layout = dcc.Loading(dbc.Toast(id='message-box', duration=2500, is_open=False, className='message-box'), type='circle', className='loading-spinner')
     return layout
 
 
