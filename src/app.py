@@ -28,7 +28,7 @@ app.layout = html.Div(children=[
             html.Hr(className='title-sep')
         ],
         className='page-header'),
-    html.Div(id='page-content', children=[html.Div([grid_layout(), message_box_layout(), keyboard_layout()])],
+    html.Div(id='page-content', children=[html.Div([grid_layout(), message_box_layout(), keyboard_layout()], className='relative')],
              className='page-content'),
     dcc.Store(id={'type': 'action-store', 'key': 0}),
     dcc.Store(id={'type': 'action-store', 'key': 1}),
@@ -75,7 +75,7 @@ WORDS_SET = load_all_words_into_set('./all_words.txt')
 
 app.clientside_callback(
     """
-    function(n_clicks, current_word, completed_status) {
+    function (n_clicks, current_word, completed_status) {
         if(current_word > 5 || completed_status) {
             throw window.dash_clientside.PreventUpdate;
         }
@@ -116,8 +116,7 @@ app.clientside_callback(
             var new_word = '';
             if (word == null) {
                 throw window.dash_clientside.PreventUpdate;
-            }
-            
+            }            
             if(word.length > 0) {
                 current_letter = word.length;
             }
@@ -197,12 +196,14 @@ def enter_pressed(n_clicks, current_word, words, evaluations, previous_guesses):
 app.clientside_callback(
     """
     function(data, word) {
-        if(data && word) {
+        if(data) {
             var outputs = [];
             var count = 0;
-            for(var i=0; i<word.length; i++) {
-                count += 1;
-                outputs.push(word[i]);      
+            if(word){
+                for(var i=0; i<word.length; i++) {
+                    count += 1;
+                    outputs.push(word[i]);      
+                }
             }
             for(var i=count; i<5; i++) {
                 outputs.push('');
@@ -225,12 +226,14 @@ app.clientside_callback(
 app.clientside_callback(
     """
     function(data, word) {
-        if(data && word) {
+        if(data) {
             var outputs = [];
             var count = 0;
-            for(var i=0; i<word.length; i++) {
-                count += 1;
-                outputs.push(word[i]);      
+            if(word){
+                for(var i=0; i<word.length; i++) {
+                    count += 1;
+                    outputs.push(word[i]);      
+                }
             }
             for(var i=count; i<5; i++) {
                 outputs.push('');
@@ -253,12 +256,14 @@ app.clientside_callback(
 app.clientside_callback(
     """
     function(data, word) {
-        if(data && word) {
+        if(data) {
             var outputs = [];
             var count = 0;
-            for(var i=0; i<word.length; i++) {
-                count += 1;
-                outputs.push(word[i]);      
+            if(word){
+                for(var i=0; i<word.length; i++) {
+                    count += 1;
+                    outputs.push(word[i]);      
+                }
             }
             for(var i=count; i<5; i++) {
                 outputs.push('');
@@ -281,12 +286,14 @@ app.clientside_callback(
 app.clientside_callback(
     """
     function(data, word) {
-        if(data && word) {
+        if(data) {
             var outputs = [];
             var count = 0;
-            for(var i=0; i<word.length; i++) {
-                count += 1;
-                outputs.push(word[i]);      
+            if(word){
+                for(var i=0; i<word.length; i++) {
+                    count += 1;
+                    outputs.push(word[i]);      
+                }
             }
             for(var i=count; i<5; i++) {
                 outputs.push('');
@@ -309,12 +316,14 @@ app.clientside_callback(
 app.clientside_callback(
     """
     function(data, word) {
-        if(data && word) {
+        if(data) {
             var outputs = [];
             var count = 0;
-            for(var i=0; i<word.length; i++) {
-                count += 1;
-                outputs.push(word[i]);      
+            if(word){
+                for(var i=0; i<word.length; i++) {
+                    count += 1;
+                    outputs.push(word[i]);      
+                }
             }
             for(var i=count; i<5; i++) {
                 outputs.push('');
@@ -337,12 +346,14 @@ app.clientside_callback(
 app.clientside_callback(
     """
     function(data, word) {
-        if(data && word) {
+        if(data) {
             var outputs = [];
             var count = 0;
-            for(var i=0; i<word.length; i++) {
-                count += 1;
-                outputs.push(word[i]);      
+            if(word){
+                for(var i=0; i<word.length; i++) {
+                    count += 1;
+                    outputs.push(word[i]);      
+                }
             }
             for(var i=count; i<5; i++) {
                 outputs.push('');

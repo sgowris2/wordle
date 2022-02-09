@@ -80,7 +80,9 @@ def word_layout(word_no):
 
 
 def message_box_layout():
-    layout = dcc.Loading(dbc.Toast(id='message-box', duration=2500, is_open=False, className='message-box'), type='circle', className='loading-spinner')
+    layout = dcc.Loading(dbc.Toast(id='message-box', duration=2500, is_open=False, className='message-box'),
+                         type='circle',
+                         className='loading-spinner', parent_className='top')
     return layout
 
 

@@ -76,6 +76,14 @@
     color: var(--color-correct);
 }
 
+.relative {
+    position: relative;
+}
+
+.top {
+    z-index: 100;
+}
+
 .wordle-title {
     font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
     padding-top: 0.5rem;
@@ -103,6 +111,8 @@
 
 .message-box {
     display: block;
+    overflow: visible;
+    position: relative;
     z-index: 100;
     margin: auto;
     height: 0;
