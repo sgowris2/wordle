@@ -271,6 +271,29 @@
     animation: 0.5s ease 0s normal both 1 fadein;
 }
 
+.modal-header-text {
+    margin: auto;
+    font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.5rem;
+}
+
+.modal-header .btn-close {
+    padding: 0;
+    margin: 0;
+}
+
+.modal-body-text {
+    margin: auto;
+    font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.modal-body-image {
+    width: 100%;
+}
+
 .spacer-half {
     flex: 0.5;
     padding: 0;

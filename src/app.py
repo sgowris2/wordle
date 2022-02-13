@@ -1,11 +1,12 @@
-import json
 import time
+import time
+
 import dash
 import dash_bootstrap_components as dbc
-from dash import html, dcc, Input, Output, ALL, MATCH, callback_context, State
+from dash import html, dcc, Input, Output, ALL, MATCH, State
 from dash.exceptions import PreventUpdate
 
-from evaluation_engine import get_output_classes, get_keyboard_classes, evaluate
+from evaluation_engine import get_output_classes, get_keyboard_classes, evaluate, _get_todays_word
 from keyboard import keyboard_layout
 from word_grid import grid_layout, message_box_layout
 
@@ -19,16 +20,17 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets, suppress_ca
                     {"name": "viewport", "content": "width=device-width, initial-scale=1"}
                 ]
                 )
-
+app.title = 'Le Wordle'
 app.layout = html.Div(children=[
     dcc.Location(id='url', refresh=False),
     html.Div(
         children=[
-            html.H1('WORDLE', className='display-6 wordle-title'),
+            html.H1('Le WORDLE', className='display-6 wordle-title'),
             html.Hr(className='title-sep')
         ],
         className='page-header'),
-    html.Div(id='page-content', children=[html.Div([grid_layout(), message_box_layout(), keyboard_layout()], className='relative')],
+    html.Div(id='page-content',
+             children=[html.Div([grid_layout(), message_box_layout(), keyboard_layout()], className='relative')],
              className='page-content'),
     dcc.Store(id={'type': 'action-store', 'key': 0}),
     dcc.Store(id={'type': 'action-store', 'key': 1}),
@@ -57,7 +59,17 @@ app.layout = html.Div(children=[
     dcc.Store(id={'type': 'word-evaluated', 'key': 3}),
     dcc.Store(id={'type': 'word-evaluated', 'key': 4}),
     dcc.Store(id={'type': 'word-evaluated', 'key': 5}),
-    dcc.Store(id='completed-store', data=False)
+    dcc.Store(id='completed-store', data=False),
+    dbc.Modal([
+        dbc.ModalHeader(id='completed-modal-header',
+                        children=[html.P(id='completed-modal-header-text', className='modal-header-text')],
+                        className='modal-header'),
+        dbc.ModalBody(id='completed-modal-body',
+                      children=[
+                          html.Img(id='completed-modal-image', src='', className='modal-body-image'),
+                          html.Div(id='completed-modal-body-text', className='modal-body-text')
+                      ])
+    ], id='completed-modal', is_open=False),
 ])
 
 server = app.server
@@ -71,7 +83,6 @@ def load_all_words_into_set(filename):
 
 
 WORDS_SET = load_all_words_into_set('./all_words.txt')
-
 
 app.clientside_callback(
     """
@@ -105,7 +116,6 @@ app.clientside_callback(
     State('current-word-store', 'data'),
     State('completed-store', 'data')
 )
-
 
 app.clientside_callback(
     """
@@ -175,9 +185,11 @@ def enter_pressed(n_clicks, current_word, words, evaluations, previous_guesses):
             if len(word) != 5:
                 raise PreventUpdate()
             if word not in WORDS_SET:
-                return [current_word, evaluations, previous_guesses, False, [None for x in range(6)], 'Not in word list', True]
+                return [current_word, evaluations, previous_guesses, False, [None for x in range(6)],
+                        'Not in word list', True]
             if word in previous_guesses:
-                return [current_word, evaluations, previous_guesses, False, [None for x in range(6)], 'Already guessed', True]
+                return [current_word, evaluations, previous_guesses, False, [None for x in range(6)], 'Already guessed',
+                        True]
             evaluations, previous_guesses, completed_status = evaluate(word_to_evaluate=word,
                                                                        evaluations=evaluations,
                                                                        previous_guesses=previous_guesses)
@@ -191,6 +203,42 @@ def enter_pressed(n_clicks, current_word, words, evaluations, previous_guesses):
             return [current_word, evaluations, previous_guesses, completed_status, words_evaluated, '', False]
 
     raise PreventUpdate()
+
+
+@app.callback(
+    Output("completed-modal", "is_open"),
+    Output("completed-modal-header-text", "children"),
+    Output("completed-modal-body-text", "children"),
+    Output("completed-modal-image", "src"),
+    [Input("completed-store", "data")],
+    [State("completed-modal", "is_open"),
+     State("evaluations-store", "data")]
+)
+def completed_modal(completed, is_open, evaluations):
+    if completed is not None:
+        time.sleep(3.5)
+        if ['G', 'G', 'G', 'G', 'G'] in evaluations:
+            if len(evaluations) == 1:
+                header = 'Le WOW! Are you cheating?'
+            elif len(evaluations) == 2:
+                header = 'TWO! Le chosen one!'
+            elif len(evaluations) == 3:
+                header = 'Le smarty pants!'
+            elif len(evaluations) == 4:
+                header = 'Le you = Le average'
+            elif len(evaluations) == 5:
+                header = 'Le meh...'
+            else:
+                header = 'Almost le dead!'
+            body = ""
+            image = 'assets/leface.png'
+        elif len(evaluations) == 6:
+            header = "Le word was {}!".format(str.upper(_get_todays_word()))
+            body = "It's okay! There's always le tomorrow..."
+            image = 'assets/lesadface.png'
+        else:
+            raise PreventUpdate()
+        return True, header, body, image
 
 
 app.clientside_callback(
@@ -222,7 +270,6 @@ app.clientside_callback(
     State({'type': 'words-store', 'key': 0}, 'data')
 )
 
-
 app.clientside_callback(
     """
     function(data, word) {
@@ -251,7 +298,6 @@ app.clientside_callback(
     Input({'type': 'word-update', 'key': 1}, 'data'),
     State({'type': 'words-store', 'key': 1}, 'data')
 )
-
 
 app.clientside_callback(
     """
@@ -282,7 +328,6 @@ app.clientside_callback(
     State({'type': 'words-store', 'key': 2}, 'data')
 )
 
-
 app.clientside_callback(
     """
     function(data, word) {
@@ -312,7 +357,6 @@ app.clientside_callback(
     State({'type': 'words-store', 'key': 3}, 'data')
 )
 
-
 app.clientside_callback(
     """
     function(data, word) {
@@ -341,7 +385,6 @@ app.clientside_callback(
     Input({'type': 'word-update', 'key': 4}, 'data'),
     State({'type': 'words-store', 'key': 4}, 'data')
 )
-
 
 app.clientside_callback(
     """
